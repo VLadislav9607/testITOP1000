@@ -2,16 +2,13 @@ import React from 'react'
 
 const currencyData = ['UA', 'USD', 'EUR'];
 
-const CurrencyBlock = ({ value, selectCurrency, setSelectCurrency, onChangeInput, }) => {
+const CurrencyBlock = ({ value, selectCurrency, setSelectCurrency, onChangeInput }) => {
+
   const onSelectCurrency = (cur) => {
-    onChangeInput(value);
     setSelectCurrency(cur);
+    onChangeInput(value, cur);
   }
 
-  React.useEffect(() => {
-    onChangeInput(value)
-  }, [selectCurrency])
- 
   return (
     <div className="converter__item">
       <select
@@ -30,7 +27,7 @@ const CurrencyBlock = ({ value, selectCurrency, setSelectCurrency, onChangeInput
         className='converter__item__input'
         type="number"
         value={value}
-        onChange={(e) => onChangeInput(e.target.value)}
+        onChange={(e) => onChangeInput(e.target.value, selectCurrency)}
         placeholder={0}
       />
     </div>
